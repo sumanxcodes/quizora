@@ -56,7 +56,7 @@ class Question(models.Model):
         return self.question_text
     
 '''
-Question Opyions
+Question Options
 '''
 class QuestionOption(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -67,7 +67,6 @@ class QuestionOption(models.Model):
 
     def __str__(self):
         return self.option_text
-
 
     
 '''
