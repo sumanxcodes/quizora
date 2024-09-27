@@ -1,15 +1,17 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from .models import User, Question, GameSession
-from .serializers import UserSerializer, QuestionSerializer, GameSessionSerializer
+from .models import User, Question, GameSession, Quiz, QuizResult, QuestionOption, ProgressTracking, Leaderboard
 from .permissions import IsAdminOrTeacher, IsStudent
-from rest_framework import permissions
+from .serializers import (
+    UserSerializer, QuestionSerializer, QuestionOptionSerializer, GameSessionSerializer, 
+    QuizSerializer, QuizResultSerializer, ProgressTrackingSerializer, LeaderboardSerializer
+)
 
 # User ViewSet
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]  # Default authentication, customize as needed
+    permission_classes = [IsAuthenticated]  # Default authentication - We add new classes as we need 
 
 
 # Question ViewSet
@@ -32,6 +34,10 @@ class QuestionViewSet(viewsets.ModelViewSet):
             permission_classes = [IsAuthenticated]  # Default permission for other roles
         return [permission() for permission in permission_classes]
 
+# Question Options Viewset
+class QuestionOptionViewSet(viewsets.ModelViewSet):
+    queryset = QuestionOption.objects.all()
+    serializer_class = QuestionOptionSerializer
 
 # Game Session ViewSet
 class GameSessionViewSet(viewsets.ModelViewSet):
@@ -49,3 +55,23 @@ class GameSessionViewSet(viewsets.ModelViewSet):
         else:
             permission_classes = [IsAuthenticated]  # Default permission for other roles
         return [permission() for permission in permission_classes]
+
+# Quiz ViewSet
+class QuizViewSet(viewsets.ModelViewSet):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+
+# Quiz Result ViewSet
+class QuizResultViewSet(viewsets.ModelViewSet):
+    queryset = QuizResult.objects.all()
+    serializer_class = QuizResultSerializer
+
+# Progress Tracking ViewSet
+class ProgressTrackingViewSet(viewsets.ModelViewSet):
+    queryset = ProgressTracking.objects.all()
+    serializer_class = ProgressTrackingSerializer
+
+# Leaderboard ViewSet
+class LeaderboardViewSet(viewsets.ModelViewSet):
+    queryset = Leaderboard.objects.all()
+    serializer_class = LeaderboardSerializer
