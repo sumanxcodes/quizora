@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
 from .models import User, Question, GameSession, Quiz, QuizResult, ProgressTracking, Leaderboard
@@ -12,7 +12,53 @@ from .serializers import (
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]  # Default authentication - We add new classes as we need 
+
+    def get_permissions(self):
+        """
+        Set permissions based on user roles:
+        - admin: full access and can perform CRUD operations
+        - teacher: can only view the list of users with role 'student'
+        - student: no access
+        """
+        permission_classes = [IsAuthenticated]  # Default authentication - We add new classes as we need 
+        if self.request.user.is_authenticated:
+            # Ensure the user has a role attribute
+            role = getattr(self.request.user, 'role', None)
+            if role == 'admin':
+                permission_classes = [IsAuthenticated]
+            elif role == 'teacher':
+                permission_classes = [IsAuthenticated]
+            else:
+                 permission_classes = [permissions.IsAuthenticated]  
+        return [permission() for permission in permission_classes]
+
+    def get_queryset(self):
+        """
+        filter the query based on the user's role:
+        - Admin can see all users.
+        - Teacher can only see users with role 'student'.
+        - Students should not be able to see any other users.
+        """
+        queryset = super().get_queryset()
+
+        role = getattr(self.request.user, 'role', None)
+
+        if role == 'admin':
+            return queryset  # Admins see all users
+        elif role == 'teacher':
+            return queryset.filter(role='student')  # Teachers can only see students
+        else:
+            return queryset.none()  # Students (or others) cannot access this view
+
+    def perform_create(self, serializer):
+        """
+        Only admin users can create new users.
+        """
+        if getattr(self.request.user, 'role', None) != 'admin':
+            raise PermissionDenied("Only admin can create users.")
+        
+        # Save the new user with the data provided
+        serializer.save()
 
 
 # Question ViewSet

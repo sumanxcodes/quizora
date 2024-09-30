@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.core.exceptions import ValidationError
 
 '''
 User model class that defines
@@ -12,12 +13,33 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
 
-    # User name field
-    name = models.CharField(max_length=255, blank=True, null=True)
+    #class_year choices for students year 1 - 6
+    CLASS_YEAR_CHOICES = [
+        ('Year 1', 'Year 1'),
+        ('Year 2', 'Year 2'),
+        ('Year 3', 'Year 3'),
+        ('Year 4', 'Year 4'),
+        ('Year 5', 'Year 5'),
+        ('Year 6', 'Year 6'),
+    ]
+    # class_year field for role student only
+    class_year = models.CharField(max_length=50, choices=CLASS_YEAR_CHOICES, blank=True, null=True, help_text="Grade or class year for students")
 
-     # Add unique related_name to avoid clashes with auth.User
+    # Add unique related_name to avoid clashes with auth.User
     groups = models.ManyToManyField(Group, related_name='api_user_groups', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='api_user_permissions', blank=True)
+
+
+    def clean(self):
+         # class_year is only set for students
+        if self.role != 'student' and self.class_year:
+            raise ValidationError({'class_year': "Only students can have a class year."})
+        
+    def save(self, *args, **kwargs):
+        # Call clean to  validate before saving
+        self.clean()
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return self.username
