@@ -47,7 +47,12 @@ class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question_text = models.TextField()
     question_type = models.CharField(max_length=50, choices=QUESTION_TYPE_CHOICES)
-    correct_answer = models.TextField()
+
+    # Insted of creating a separate model for answer, for simplicity a JSON filed is used to store the options
+    # and correct answers
+    options = models.JSONField(null=True, blank=True)
+    # Stored answer only for non multiple choice question type
+    correct_answer = models.JSONField() 
     points = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -55,19 +60,6 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
     
-'''
-Question Options
-'''
-class QuestionOption(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    option_text = models.TextField()
-    is_correct = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.option_text
-
     
 '''
 Game Session

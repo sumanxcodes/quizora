@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
-    UserViewSet, QuestionViewSet, QuestionOptionViewSet, GameSessionViewSet, QuizViewSet, 
+    UserViewSet, QuestionViewSet, GameSessionViewSet, QuizViewSet, 
     QuizResultViewSet, ProgressTrackingViewSet, LeaderboardViewSet
 )
 
@@ -11,7 +11,6 @@ router = DefaultRouter()
 # Register the viewsets to specific endpoints
 router.register(r'users', UserViewSet)
 router.register(r'questions', QuestionViewSet)
-router.register(r'questionoptions', QuestionOptionViewSet)
 router.register(r'quizzes', QuizViewSet)
 router.register(r'quizresults', QuizResultViewSet)
 router.register(r'gamesessions', GameSessionViewSet)

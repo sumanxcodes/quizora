@@ -1,10 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
-from .models import User, Question, GameSession, Quiz, QuizResult, QuestionOption, ProgressTracking, Leaderboard
+from .models import User, Question, GameSession, Quiz, QuizResult, ProgressTracking, Leaderboard
 from .permissions import IsAdminOrTeacher, IsStudent
 from .serializers import (
-    UserSerializer, QuestionSerializer, QuestionOptionSerializer, GameSessionSerializer, 
+    UserSerializer, QuestionSerializer, GameSessionSerializer, 
     QuizSerializer, QuizResultSerializer, ProgressTrackingSerializer, LeaderboardSerializer
 )
 
@@ -39,10 +39,6 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
         return [permission() for permission in permission_classes]
 
-# Question Options Viewset
-class QuestionOptionViewSet(viewsets.ModelViewSet):
-    queryset = QuestionOption.objects.all()
-    serializer_class = QuestionOptionSerializer
 
 # Game Session ViewSet
 class GameSessionViewSet(viewsets.ModelViewSet):
