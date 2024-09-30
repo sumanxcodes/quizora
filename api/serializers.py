@@ -21,8 +21,8 @@ class QuizSerializer(serializers.ModelSerializer):
 
 # Question Serializer
 class QuestionSerializer(serializers.ModelSerializer):
-    quiz = serializers.StringRelatedField()  # Display the quiz title
-
+    # setting quiz by ID so that it can be passed during question creation.
+    quiz = serializers.PrimaryKeyRelatedField(queryset=Quiz.objects.all())  
     class Meta:
         model = Question
         fields = ['id', 'quiz', 'question_text', 'question_type', 'correct_answer', 'points', 'created_at', 'updated_at']
