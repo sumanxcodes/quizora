@@ -12,6 +12,9 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
 
+    # User name field
+    name = models.CharField(max_length=255, blank=True, null=True)
+
      # Add unique related_name to avoid clashes with auth.User
     groups = models.ManyToManyField(Group, related_name='api_user_groups', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='api_user_permissions', blank=True)
