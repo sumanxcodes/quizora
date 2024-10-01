@@ -92,9 +92,21 @@ class Question(models.Model):
 Game Session
 '''
 class GameSession(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    STATUS_CHOICES = [
+        ('in_progress', 'In Progress'),
+        ('completed', 'Completed'),
+        ('abandoned', 'Abandoned')
+    ]
+        
+    student = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'student'})
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE) 
+    # using user id and quiz id can tell user's no of attempt to that quiz
+    duration = models.DurationField(null=True, blank=True)  
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='in_progress')
     score = models.IntegerField()
+    correct_answers_count = models.IntegerField(default=0)
     date_played = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True) # Track when this game session was lat updated
 
 '''
 QuizResult
