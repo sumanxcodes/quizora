@@ -72,6 +72,7 @@ class Question(models.Model):
         ('matching_pairs', 'Matching Pairs'),
      )
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'teacher'})
     question_text = models.TextField()
     question_type = models.CharField(max_length=50, choices=QUESTION_TYPE_CHOICES)
 

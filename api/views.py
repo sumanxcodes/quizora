@@ -104,6 +104,23 @@ class QuestionViewSet(viewsets.ModelViewSet):
                 permission_classes = [IsStudent]
 
         return [permission() for permission in permission_classes]
+    
+    def perform_create(self, serializer):
+        if self.request.user.role != 'teacher':
+            raise PermissionDenied("Only teachers can create game questions.")
+        serializer.save(teacher=self.request.user)
+
+    def update(self, request, *args, **kwargs):
+        """
+        Only teachers can update questions.
+        """
+        print("=========")
+        print(self.get_object())
+        question = self.get_object()  
+        if request.user.role != 'teacher' or question.teacher != request.user:
+            raise PermissionDenied("Only the teacher who created this question can update it.")
+        
+        return super().update(request, *args, **kwargs)
 
 
 # Game Session ViewSet

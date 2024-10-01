@@ -27,6 +27,19 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields = ['id', 'quiz', 'question_text', 'question_type', 'options', 'correct_answer', 'points', 'created_at', 'updated_at']
 
+    def to_representation(self, instance):
+        """
+        Custom representation to hide the 'correct_answer' field for students.
+        """
+        representation = super().to_representation(instance)
+        request = self.context.get('request')
+
+        if request and request.user.role == 'student':
+            # Hiding the correct_answer field for role students
+            representation.pop('correct_answer')
+        
+        return representation
+
 # Game Session Serializer
 class GameSessionSerializer(serializers.ModelSerializer):
     student = serializers.StringRelatedField()  # Display the user's username
