@@ -59,6 +59,26 @@ class UserViewSet(viewsets.ModelViewSet):
         
         # Save the new user with the data provided
         serializer.save()
+    
+    def update(self, request, *args, **kwargs):
+        """
+        Only admin users can update users.
+        """
+        if getattr(self.request.user, 'role', None) != 'admin':
+            raise PermissionDenied("Only admin can update users.")
+        
+        # Proceed with the update if the user is an admin
+        return super().update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Only admin users can delete users.
+        """
+        if getattr(self.request.user, 'role', None) != 'admin':
+            raise PermissionDenied("Only admin can delete users.")
+        
+        # Proceed with the delete if the user is an admin
+        return super().destroy(request, *args, **kwargs)
 
 
 # Question ViewSet
@@ -128,6 +148,41 @@ class QuizViewSet(viewsets.ModelViewSet):
         
         # Automatically assign the currently authenticated user as the teacher
         serializer.save(teacher=self.request.user)
+    def perform_update(self, serializer):
+        """
+        Only teachers can edit their own quizzes.
+        Admins can edit any quiz.
+        """
+        quiz = self.get_object()
+
+        # Ensure that the user is a teacher and the quiz belongs to them, or they're an admin
+        if getattr(self.request.user, 'role', None) == 'teacher':
+            if quiz.teacher != self.request.user:
+                raise PermissionDenied("You can only edit quizzes that you created.")
+        
+        if getattr(self.request.user, 'role', None) != 'admin' and quiz.teacher != self.request.user:
+            raise PermissionDenied("You can only edit your own quizzes or you need to be an admin.")
+        
+        # Proceed with the update if the permissions are satisfied
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        """
+        Only teachers can delete their own quizzes.
+        Admins can delete any quiz.
+        """
+        quiz = self.get_object()
+
+        # Ensure that the user is a teacher and the quiz belongs to them, or they're an admin
+        if getattr(self.request.user, 'role', None) == 'teacher':
+            if quiz.teacher != self.request.user:
+                raise PermissionDenied("You can only delete quizzes that you created.")
+        
+        if getattr(self.request.user, 'role', None) != 'admin' and quiz.teacher != self.request.user:
+            raise PermissionDenied("You can only delete your own quizzes or you need to be an admin.")
+        
+        # Proceed with the delete if the permissions are satisfied
+        instance.delete()
 
 # Quiz Result ViewSet
 class QuizResultViewSet(viewsets.ModelViewSet):

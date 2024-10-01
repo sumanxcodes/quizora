@@ -13,17 +13,8 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
 
-    #class_year choices for students year 1 - 6
-    CLASS_YEAR_CHOICES = [
-        ('Year 1', 'Year 1'),
-        ('Year 2', 'Year 2'),
-        ('Year 3', 'Year 3'),
-        ('Year 4', 'Year 4'),
-        ('Year 5', 'Year 5'),
-        ('Year 6', 'Year 6'),
-    ]
-    # class_year field for role student only
-    class_year = models.CharField(max_length=50, choices=CLASS_YEAR_CHOICES, blank=True, null=True, help_text="Grade or class year for students")
+    # ForeignKey to ClassYear, for students only
+    class_year = models.ForeignKey('ClassYear', on_delete=models.SET_NULL, blank=True, null=True, help_text="Grade or class year for students")
 
     # Add unique related_name to avoid clashes with auth.User
     groups = models.ManyToManyField(Group, related_name='api_user_groups', blank=True)
@@ -44,6 +35,16 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
+'''
+Class Year for primary school student
+'''
+class ClassYear(models.Model):
+    name = models.CharField(max_length=50, unique=True)  # 'Year 1', 'Year 2', etc.
+    description = models.TextField(blank=True, null=True)  # Optional field for more information about the class year
+
+    def __str__(self):
+        return self.name
+
 
 '''
 Quiz model
@@ -52,6 +53,7 @@ class Quiz(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'teacher'})
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    class_year = models.ForeignKey(ClassYear, on_delete=models.SET_NULL, null=True, blank=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
