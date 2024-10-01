@@ -1,10 +1,11 @@
 
 # Quizora
 
-This repository contains the backend for Quizora Python based game using Django. The backend is designed to provide a RestFul API (API app) and interactive platform for students, teachers, and administrators. It allows users to create, manage, and participate in quizzes tailored to educational purposes, with a focus on arithmetic quizzes. The app is built with a clean and scalable structure, leveraging Django's robust framework for rapid development and deployment.
+This repository is a backend for Quizora, a Python-based desktop quiz game. This backend service is built using Django Web and a framework for Python. It has two components (apps): Dashboard and RESTful API. 
+**[Dashboard](#dashboard)**: Interactive platform for students, teachers and administrators. It helps to visualise students' progress in the Game and what units students need to focus on.
+**[RestFul API](#restful-api)**: Serves as a communication service between the Game and the Database using API endpoints. It is built using Django's Rest Framework for rapid development and deployment.
 
-## Features
-
+## Restful API
 - **Role-Based Access Control**: 
   - **Admin**: Can manage users, quizzes, and view reports.
   - **Teacher**: Can create and manage quiz questions.
@@ -28,6 +29,12 @@ This repository contains the backend for Quizora Python based game using Django.
 - **Security**:
   - Uses environment variables to protect sensitive data like the Django `SECRET_KEY`.
   - Role-based permissions ensure that only authorized users have access to certain features.
+
+
+## Dashboard
+
+## Features
+
 
 ## Technology Stack
 
