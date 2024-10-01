@@ -29,11 +29,12 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 # Game Session Serializer
 class GameSessionSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()  # Display the user's username
+    student = serializers.StringRelatedField()  # Display the user's username
 
     class Meta:
         model = GameSession
-        fields = ['id', 'user', 'score', 'date_played']
+        fields = ['id', 'student', 'quiz', 'duration', 'status', 'score', 'correct_answers_count', 'date_played', 'last_updated']
+
 
 # Quiz Result Serializer
 class QuizResultSerializer(serializers.ModelSerializer):
