@@ -40,4 +40,7 @@ class IsStudent(permissions.BasePermission):
             if request.method in permissions.SAFE_METHODS:
                 # Only allow read-only methods for students (GET, HEAD, OPTIONS)
                 return True
+             # Allow students to submit answers (POST)
+            elif request.method == 'POST':
+                return True
         return False
