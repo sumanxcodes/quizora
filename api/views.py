@@ -113,15 +113,29 @@ class GameSessionViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         """
-        Apply custom permissions for accessing game sessions.
+        Apply custom permissions for accessing game sessions for students onyl..
         """
-        if self.request.user.role == 'admin' or self.request.user.role == 'teacher':
-            permission_classes = [IsAdminOrTeacher]
-        elif self.request.user.role == 'student':
-            permission_classes = [IsStudent]
-        else:
-            permission_classes = [IsAuthenticated]  # Default permission for other roles
+        permission_classes = [IsAuthenticated] 
+        if self.request.user.is_authenticated:
+            if self.request.user.role == 'student':
+                permission_classes = [IsStudent]
+            else:
+                raise PermissionDenied("Game sessions are only associated with student account.")
         return [permission() for permission in permission_classes]
+    
+    def get_queryset(self):
+        """
+        Restrict game session viewing to only the current student.
+        """
+        if self.request.user.role == 'student':
+            return GameSession.objects.filter(student=self.request.user)  # Return only the student's game sessions
+        return GameSession.objects.none()  
+    
+    def perform_create(self, serializer):
+        if self.request.user.role != 'student':
+            raise PermissionDenied("Only students can create game sessions.")
+        # Assign the authenticated student as the user in the GameSession
+        serializer.save(student=self.request.user)
 
 # Quiz ViewSet
 class QuizViewSet(viewsets.ModelViewSet):
