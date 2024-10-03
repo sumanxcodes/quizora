@@ -1,12 +1,40 @@
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
+from django.contrib.auth import authenticate, login, logout
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from .models import User, Question, GameSession, Quiz, QuizResult, ProgressTracking, Leaderboard
 from .permissions import IsAdminOrTeacher, IsStudent
 from .serializers import (
     UserSerializer, QuestionSerializer, GameSessionSerializer, 
     QuizSerializer, QuizResultSerializer, ProgressTrackingSerializer, LeaderboardSerializer
 )
+
+# Login view
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+# Logout view
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
+        return Response({"message": "Logout successful"}, status=status.HTTP_200_OK)
 
 # User ViewSet
 class UserViewSet(viewsets.ModelViewSet):
@@ -229,3 +257,23 @@ class ProgressTrackingViewSet(viewsets.ModelViewSet):
 class LeaderboardViewSet(viewsets.ModelViewSet):
     queryset = Leaderboard.objects.all()
     serializer_class = LeaderboardSerializer
+
+    def get_permissions(self):
+        """
+        Only students should be allowed to interact with the leaderboard.
+        """
+        permission_classes = [IsAuthenticated]
+        if self.request.user.is_authenticated:
+            if self.request.user.role != 'student':
+                raise PermissionDenied("Only students can access the leaderboard.")
+        return [permission() for permission in permission_classes]
+
+    def perform_create(self, serializer):
+        """
+        Automatically assign the currently authenticated student to the leaderboard entry.
+        """
+        if self.request.user.role != 'student':
+            raise PermissionDenied("Only students can create leaderboard entries.")
+        
+        # Automatically assign the current user (student) to the leaderboard entry
+        serializer.save(student=self.request.user)

@@ -69,8 +69,8 @@ class ProgressTrackingSerializer(serializers.ModelSerializer):
 
 # Leaderboard Serializer
 class LeaderboardSerializer(serializers.ModelSerializer):
-    student = serializers.StringRelatedField()  # Display the student's username
-    quiz = serializers.StringRelatedField()     # Display the quiz title
+    student = serializers.StringRelatedField() 
+    quiz = serializers.PrimaryKeyRelatedField(queryset=Quiz.objects.all()) 
 
     class Meta:
         model = Leaderboard
