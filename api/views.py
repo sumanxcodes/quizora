@@ -6,11 +6,11 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .models import User, Question, GameSession, Quiz, QuizResult, ProgressTracking, Leaderboard
+from .models import User, Question, GameSession, Quiz, QuizResult, ProgressTracking
 from .permissions import IsAdminOrTeacher, IsStudent
 from .serializers import (
     UserSerializer, QuestionSerializer, GameSessionSerializer, 
-    QuizSerializer, QuizResultSerializer, ProgressTrackingSerializer, LeaderboardSerializer
+    QuizSerializer, QuizResultSerializer, ProgressTrackingSerializer
 )
 
 # Login view
@@ -132,6 +132,21 @@ class QuestionViewSet(viewsets.ModelViewSet):
                 permission_classes = [IsStudent]
 
         return [permission() for permission in permission_classes]
+     
+    def get_queryset(self):
+        """
+        Filter the queryset based on the user's role.
+        - Students can only view questions for their assigned  quizzes.
+        - Teachers and admins can view all questions.
+        """
+        user = self.request.user
+
+        # If the user is a student, filter questions by their class_year via related quizzes
+        if user.is_authenticated and user.role == 'student':
+            return self.queryset.filter(quiz__class_year=user.class_year)
+        
+        # If the user is a teacher or admin, return all questions
+        return self.queryset
     
     def perform_create(self, serializer):
         if self.request.user.role != 'teacher':
@@ -199,6 +214,21 @@ class QuizViewSet(viewsets.ModelViewSet):
             if role == 'teacher':
                 permission_classes = [IsAdminOrTeacher]
         return [permission() for permission in permission_classes]
+    
+    def get_queryset(self):
+        """
+        Filter the queryset based on the user's role.
+        - Students can only view quizzes for their assigned class_year.
+        - Teachers and admins can view all quizzes.
+        """
+        user = self.request.user
+
+        # If the user is a student, filter quizzes by their class_year
+        if user.is_authenticated and user.role == 'student':
+            return self.queryset.filter(class_year=user.class_year)
+        
+        # If the user is a teacher or admin, return all quizzes
+        return self.queryset
 
     def perform_create(self, serializer):
         # Ensure that the user creating the quiz is a teacher
@@ -252,28 +282,3 @@ class QuizResultViewSet(viewsets.ModelViewSet):
 class ProgressTrackingViewSet(viewsets.ModelViewSet):
     queryset = ProgressTracking.objects.all()
     serializer_class = ProgressTrackingSerializer
-
-# Leaderboard ViewSet
-class LeaderboardViewSet(viewsets.ModelViewSet):
-    queryset = Leaderboard.objects.all()
-    serializer_class = LeaderboardSerializer
-
-    def get_permissions(self):
-        """
-        Only students should be allowed to interact with the leaderboard.
-        """
-        permission_classes = [IsAuthenticated]
-        if self.request.user.is_authenticated:
-            if self.request.user.role != 'student':
-                raise PermissionDenied("Only students can access the leaderboard.")
-        return [permission() for permission in permission_classes]
-
-    def perform_create(self, serializer):
-        """
-        Automatically assign the currently authenticated student to the leaderboard entry.
-        """
-        if self.request.user.role != 'student':
-            raise PermissionDenied("Only students can create leaderboard entries.")
-        
-        # Automatically assign the current user (student) to the leaderboard entry
-        serializer.save(student=self.request.user)

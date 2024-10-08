@@ -3,13 +3,13 @@ This file contains serialisers code which converts Django models to JSON format
 and vice-versa.
 '''
 from rest_framework import serializers
-from .models import User, Quiz, Question, GameSession, QuizResult, ProgressTracking, Leaderboard
+from .models import User, Quiz, Question, GameSession, QuizResult, ProgressTracking
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'role', 'email']
+        fields = ['id', 'username', 'role', 'email', 'first_name', 'last_name', 'class_year']
 
 # Quiz Serializer
 class QuizSerializer(serializers.ModelSerializer):
@@ -66,14 +66,3 @@ class ProgressTrackingSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgressTracking
         fields = ['id', 'student', 'quiz', 'status', 'score', 'started_at', 'completed_at']
-
-# Leaderboard Serializer
-class LeaderboardSerializer(serializers.ModelSerializer):
-    student = serializers.StringRelatedField() 
-    quiz = serializers.PrimaryKeyRelatedField(queryset=Quiz.objects.all()) 
-
-    class Meta:
-        model = Leaderboard
-        fields = ['id', 'student', 'quiz', 'ranking', 'total_score']
-
-

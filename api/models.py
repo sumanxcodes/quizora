@@ -111,6 +111,7 @@ class GameSession(models.Model):
 
 '''
 QuizResult
+Once session starts and progresses at the end Quiz Result will only save results of completed quiz
 '''
 class QuizResult(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'student'})
@@ -142,15 +143,3 @@ class ProgressTracking(models.Model):
 
     def __str__(self):
         return f'{self.student.username} - {self.quiz.title} - {self.status}'
-
-'''
-Leader Board
-'''
-class Leaderboard(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'student'})
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    ranking = models.IntegerField()
-    total_score = models.IntegerField()
-
-    def __str__(self):
-        return f'{self.student.username} - {self.quiz.title} - Rank: {self.ranking}'
