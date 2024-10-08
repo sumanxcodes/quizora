@@ -12,6 +12,7 @@ def load_dummy_data(apps, schema_editor):
     Question = apps.get_model('api', 'Question')
     GameSession = apps.get_model('api', 'GameSession')
     QuizResult = apps.get_model('api', 'QuizResult')
+    ProgressTracking = apps.get_model('api', 'ProgressTracking')
 
     # Fetch existing ClassYear instances created in a previous migration
     try:
@@ -95,8 +96,15 @@ def load_dummy_data(apps, schema_editor):
                     completed_at=datetime.datetime.now() - datetime.timedelta(days=randint(1, 30)),
                     updated_at=datetime.datetime.now()
                 )
-
-
+        # Add dummy data for ProgressTracking
+        ProgressTracking.objects.create(
+            student_id=student.id,
+            quiz=quiz,
+            status=choice(['in_progress', 'completed']),
+            score=score if status == 'completed' else None,
+            started_at=datetime.datetime.now() - datetime.timedelta(days=randint(1, 30)),
+            completed_at=datetime.datetime.now() if status == 'completed' else None
+        )
 
 def reverse_dummy_data(apps, schema_editor):
     User = get_user_model()

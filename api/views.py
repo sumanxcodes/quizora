@@ -278,7 +278,36 @@ class QuizResultViewSet(viewsets.ModelViewSet):
     queryset = QuizResult.objects.all()
     serializer_class = QuizResultSerializer
 
+    def get_queryset(self):
+        # Get the current user
+        user = self.request.user
+
+        # If the user is a student return only their quiz results
+        if user.role == 'student':
+            return QuizResult.objects.filter(student=user)
+        
+        # If the user is a teacher or admin, return all quiz results
+        if user.role in ['teacher', 'admin']:
+            return QuizResult.objects.all()
+
+        # Otherwise, deny access
+        raise PermissionDenied("You do not have permission to view this data.")
+
 # Progress Tracking ViewSet
 class ProgressTrackingViewSet(viewsets.ModelViewSet):
     queryset = ProgressTracking.objects.all()
     serializer_class = ProgressTrackingSerializer
+    def get_queryset(self):
+        # Get the current user
+        user = self.request.user
+
+        # If the user is a student return only their progress tracking
+        if user.role == 'student':
+            return ProgressTracking.objects.filter(student=user)
+        
+        # If the user is a teacher or admin, return all progress tracking records
+        if user.role in ['teacher', 'admin']:
+            return ProgressTracking.objects.all()
+
+        # Otherwise, deny access
+        raise PermissionDenied("You do not have permission to view this data.")
