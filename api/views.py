@@ -108,6 +108,17 @@ class UserViewSet(viewsets.ModelViewSet):
         # Proceed with the delete if the user is an admin
         return super().destroy(request, *args, **kwargs)
 
+# View that gets logged in user
+class UserInfoView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """
+        Retrieve information for the authenticated user.
+        """
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 # Question ViewSet
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -277,22 +288,28 @@ class QuizViewSet(viewsets.ModelViewSet):
 class QuizResultViewSet(viewsets.ModelViewSet):
     queryset = QuizResult.objects.all()
     serializer_class = QuizResultSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Get the current user
+        """
+        Return quiz results based on user role:
+        - Admin and Teacher: Can view all quiz results.
+        - Student: Can view quiz results of students within the same class_year.
+        """
         user = self.request.user
 
-        # If the user is a student return only their quiz results
-        if user.role == 'student':
-            return QuizResult.objects.filter(student=user)
-        
-        # If the user is a teacher or admin, return all quiz results
-        if user.role in ['teacher', 'admin']:
+        # If the user is an admin or teacher, return all quiz results
+        if user.role in ['admin', 'teacher']:
             return QuizResult.objects.all()
-
-        # Otherwise, deny access
+        
+        # If the user is a student, return only quiz results of students in the same class_year
+        elif user.role == 'student':
+            class_year = user.class_year  # Assuming `class_year` is an attribute of the User model
+            return QuizResult.objects.filter(student__class_year=class_year)
+        
+        # If the user has an unrecognized role, deny access
         raise PermissionDenied("You do not have permission to view this data.")
-
+    
 # Progress Tracking ViewSet
 class ProgressTrackingViewSet(viewsets.ModelViewSet):
     queryset = ProgressTracking.objects.all()

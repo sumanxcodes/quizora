@@ -3,7 +3,7 @@ from .views import LoginView, LogoutView
 from rest_framework.routers import DefaultRouter
 from .views import (
     UserViewSet, QuestionViewSet, GameSessionViewSet, QuizViewSet, 
-    QuizResultViewSet, ProgressTrackingViewSet
+    QuizResultViewSet, ProgressTrackingViewSet, UserInfoView
 )
 
 # Create a router and register our viewsets with it.
@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include(router.urls)),  # Include all routes from the router
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('user-info/', UserInfoView.as_view(), name='user-info'),
 ]
