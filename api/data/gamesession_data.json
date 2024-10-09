@@ -1,0 +1,212 @@
+[
+    {
+        "model": "api.gamesession",
+        "pk": 1,
+        "fields": {
+            "student_id": 3,
+            "quiz": 2,
+            "duration": 360,
+            "status": "completed",
+            "score": 7,
+            "correct_answers_count": 4,
+            "date_played": "2024-10-09T00:00:00Z",
+            "last_updated": "2024-10-09T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 2,
+        "fields": {
+            "student_id": 3,
+            "quiz": 4,
+            "duration": 450,
+            "status": "completed",
+            "score": 8,
+            "correct_answers_count": 5,
+            "date_played": "2024-10-10T00:00:00Z",
+            "last_updated": "2024-10-10T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 3,
+        "fields": {
+            "student_id": 3,
+            "quiz": 5,
+            "duration": 420,
+            "status": "in_progress",
+            "score": 6,
+            "correct_answers_count": 3,
+            "date_played": "2024-10-11T00:00:00Z",
+            "last_updated": "2024-10-11T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 4,
+        "fields": {
+            "student_id": 6,
+            "quiz": 2,
+            "duration": 380,
+            "status": "completed",
+            "score": 9,
+            "correct_answers_count": 4,
+            "date_played": "2024-10-10T00:00:00Z",
+            "last_updated": "2024-10-10T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 5,
+        "fields": {
+            "student_id": 6,
+            "quiz": 7,
+            "duration": 460,
+            "status": "completed",
+            "score": 8,
+            "correct_answers_count": 5,
+            "date_played": "2024-10-11T00:00:00Z",
+            "last_updated": "2024-10-11T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 6,
+        "fields": {
+            "student_id": 6,
+            "quiz": 8,
+            "duration": 420,
+            "status": "in_progress",
+            "score": 7,
+            "correct_answers_count": 3,
+            "date_played": "2024-10-12T00:00:00Z",
+            "last_updated": "2024-10-12T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 7,
+        "fields": {
+            "student_id": 16,
+            "quiz": 10,
+            "duration": 400,
+            "status": "completed",
+            "score": 9,
+            "correct_answers_count": 4,
+            "date_played": "2024-10-09T00:00:00Z",
+            "last_updated": "2024-10-09T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 8,
+        "fields": {
+            "student_id": 16,
+            "quiz": 11,
+            "duration": 450,
+            "status": "completed",
+            "score": 8,
+            "correct_answers_count": 5,
+            "date_played": "2024-10-10T00:00:00Z",
+            "last_updated": "2024-10-10T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 9,
+        "fields": {
+            "student_id": 16,
+            "quiz": 12,
+            "duration": 430,
+            "status": "in_progress",
+            "score": 6,
+            "correct_answers_count": 3,
+            "date_played": "2024-10-11T00:00:00Z",
+            "last_updated": "2024-10-11T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 10,
+        "fields": {
+            "student_id": 17,
+            "quiz": 10,
+            "duration": 380,
+            "status": "completed",
+            "score": 7,
+            "correct_answers_count": 4,
+            "date_played": "2024-10-09T00:00:00Z",
+            "last_updated": "2024-10-09T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 11,
+        "fields": {
+            "student_id": 17,
+            "quiz": 13,
+            "duration": 480,
+            "status": "completed",
+            "score": 8,
+            "correct_answers_count": 5,
+            "date_played": "2024-10-10T00:00:00Z",
+            "last_updated": "2024-10-10T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 12,
+        "fields": {
+            "student_id": 17,
+            "quiz": 14,
+            "duration": 430,
+            "status": "in_progress",
+            "score": 5,
+            "correct_answers_count": 2,
+            "date_played": "2024-10-11T00:00:00Z",
+            "last_updated": "2024-10-11T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 13,
+        "fields": {
+            "student_id": 18,
+            "quiz": 11,
+            "duration": 390,
+            "status": "completed",
+            "score": 8,
+            "correct_answers_count": 4,
+            "date_played": "2024-10-09T00:00:00Z",
+            "last_updated": "2024-10-09T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 14,
+        "fields": {
+            "student_id": 18,
+            "quiz": 12,
+            "duration": 470,
+            "status": "completed",
+            "score": 7,
+            "correct_answers_count": 4,
+            "date_played": "2024-10-10T00:00:00Z",
+            "last_updated": "2024-10-10T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.gamesession",
+        "pk": 15,
+        "fields": {
+            "student_id": 18,
+            "quiz": 15,
+            "duration": 440,
+            "status": "in_progress",
+            "score": 6,
+            "correct_answers_count": 3,
+            "date_played": "2024-10-11T00:00:00Z",
+            "last_updated": "2024-10-11T00:00:00Z"
+        }
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "model": "api.classyear",
+        "pk": 1,
+        "fields": {
+            "name": "Year 1",
+            "description": "Class for year 1 students"
+        }
+    },
+    {
+        "model": "api.classyear",
+        "pk": 2,
+        "fields": {
+            "name": "Year 2",
+            "description": "Class for year 2 students"
+        }
+    },
+    {
+        "model": "api.classyear",
+        "pk": 3,
+        "fields": {
+            "name": "Year 3",
+            "description": "Class for year 3 students"
+        }
+    }
+]

@@ -1,0 +1,300 @@
+[
+    {
+        "model": "api.user",
+        "pk": 1,
+        "fields": {
+            "username": "alex_johnson",
+            "email": "teacher_user@dummyemail.com",
+            "role": "teacher",
+            "first_name": "Alex",
+            "last_name": "Johnson"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 2,
+        "fields": {
+            "username": "ella_smith",
+            "email": "student1@dummyemail.com",
+            "role": "student",
+            "class_year_id": 1,
+            "first_name": "Ella",
+            "last_name": "Smith"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 3,
+        "fields": {
+            "username": "suman_sharma",
+            "email": "student2@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Suman",
+            "last_name": "Sharma"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 4,
+        "fields": {
+            "username": "lily_anderson",
+            "email": "student3@dummyemail.com",
+            "role": "student",
+            "class_year_id": 3,
+            "first_name": "Lily",
+            "last_name": "Anderson"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 5,
+        "fields": {
+            "username": "sarah_martinez",
+            "email": "teacher_user2@dummyemail.com",
+            "role": "teacher",
+            "first_name": "Sarah",
+            "last_name": "Martinez"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 6,
+        "fields": {
+            "username": "liam_thompson",
+            "email": "student_cy2_1@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Liam",
+            "last_name": "Thompson"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 7,
+        "fields": {
+            "username": "ava_lee",
+            "email": "student_cy2_2@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Ava",
+            "last_name": "Lee"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 8,
+        "fields": {
+            "username": "noah_walker",
+            "email": "student_cy2_3@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Noah",
+            "last_name": "Walker"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 9,
+        "fields": {
+            "username": "olivia_hall",
+            "email": "student_cy2_4@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Olivia",
+            "last_name": "Hall"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 10,
+        "fields": {
+            "username": "ethan_adams",
+            "email": "student_cy2_5@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Ethan",
+            "last_name": "Adams"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 11,
+        "fields": {
+            "username": "sophia_perez",
+            "email": "student_cy2_6@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Sophia",
+            "last_name": "Perez"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 12,
+        "fields": {
+            "username": "james_clark",
+            "email": "student_cy2_7@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "James",
+            "last_name": "Clark"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 13,
+        "fields": {
+            "username": "isabella_rodriguez",
+            "email": "student_cy2_8@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Isabella",
+            "last_name": "Rodriguez"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 14,
+        "fields": {
+            "username": "lucas_lewis",
+            "email": "student_cy2_9@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Lucas",
+            "last_name": "Lewis"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 15,
+        "fields": {
+            "username": "mia_young",
+            "email": "student_cy2_10@dummyemail.com",
+            "role": "student",
+            "class_year_id": 2,
+            "first_name": "Mia",
+            "last_name": "Young"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 16,
+        "fields": {
+            "username": "benjamin_allen",
+            "email": "student_cy4_1@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Benjamin",
+            "last_name": "Allen"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 17,
+        "fields": {
+            "username": "emma_scott",
+            "email": "student_cy4_2@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Emma",
+            "last_name": "Scott"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 18,
+        "fields": {
+            "username": "oliver_king",
+            "email": "student_cy4_3@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Oliver",
+            "last_name": "King"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 19,
+        "fields": {
+            "username": "charlotte_wright",
+            "email": "student_cy4_4@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Charlotte",
+            "last_name": "Wright"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 20,
+        "fields": {
+            "username": "henry_lopez",
+            "email": "student_cy4_5@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Henry",
+            "last_name": "Lopez"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 21,
+        "fields": {
+            "username": "amelia_green",
+            "email": "student_cy4_6@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Amelia",
+            "last_name": "Green"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 22,
+        "fields": {
+            "username": "sebastian_harris",
+            "email": "student_cy4_7@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Sebastian",
+            "last_name": "Harris"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 23,
+        "fields": {
+            "username": "harper_nelson",
+            "email": "student_cy4_8@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Harper",
+            "last_name": "Nelson"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 24,
+        "fields": {
+            "username": "jackson_watson",
+            "email": "student_cy4_9@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Jackson",
+            "last_name": "Watson"
+        }
+    },
+    {
+        "model": "api.user",
+        "pk": 25,
+        "fields": {
+            "username": "sofia_gray",
+            "email": "student_cy4_10@dummyemail.com",
+            "role": "student",
+            "class_year_id": 4,
+            "first_name": "Sofia",
+            "last_name": "Gray"
+        }
+    }
+]

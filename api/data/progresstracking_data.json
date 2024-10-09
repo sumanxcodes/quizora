@@ -1,0 +1,38 @@
+[
+    {
+        "model": "api.progresstracking",
+        "pk": 1,
+        "fields": {
+            "student_id": 2,
+            "quiz": 1,
+            "status": "in_progress",
+            "score": null,
+            "started_at": "2024-10-08T00:00:00Z",
+            "completed_at": null
+        }
+    },
+    {
+        "model": "api.progresstracking",
+        "pk": 2,
+        "fields": {
+            "student_id": 3,
+            "quiz": 2,
+            "status": "completed",
+            "score": 40,
+            "started_at": "2024-10-07T00:00:00Z",
+            "completed_at": "2024-10-08T00:00:00Z"
+        }
+    },
+    {
+        "model": "api.progresstracking",
+        "pk": 3,
+        "fields": {
+            "student_id": 4,
+            "quiz": 3,
+            "status": "completed",
+            "score": 30,
+            "started_at": "2024-10-06T00:00:00Z",
+            "completed_at": "2024-10-07T00:00:00Z"
+        }
+    }
+]
