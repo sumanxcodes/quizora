@@ -12,3 +12,6 @@ __pycache__/
 # Add your virtual environment folder
 quizora_env/
 
+# intellij idea
+./idea
+
