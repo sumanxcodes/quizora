@@ -1,46 +1,10 @@
 [
     {
         "model": "api.quiz",
-        "pk": 1,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 1 Quiz",
-            "description": "Basic arithmetic quiz for Year 1",
-            "class_year_id": 1,
-            "created_at": "2024-10-08T00:00:00Z",
-            "updated_at": "2024-10-08T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 2,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 2 Quiz",
-            "description": "Intermediate quiz for Year 2",
-            "class_year_id": 2,
-            "created_at": "2024-10-08T00:00:00Z",
-            "updated_at": "2024-10-08T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 3,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 3 Quiz",
-            "description": "Advanced quiz for Year 3",
-            "class_year_id": 3,
-            "created_at": "2024-10-08T00:00:00Z",
-            "updated_at": "2024-10-08T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
         "pk": 4,
         "fields": {
             "teacher_id": 1,
-            "title": "Year 2 Arithmetic Quiz",
+            "title": "Arithmetic Quiz",
             "description": "Addition and subtraction practice for Year 2",
             "class_year_id": 2,
             "created_at": "2024-10-09T00:00:00Z",
@@ -52,7 +16,7 @@
         "pk": 5,
         "fields": {
             "teacher_id": 1,
-            "title": "Year 2 Multiplication Quiz",
+            "title": "Multiplication Quiz",
             "description": "Introduction to multiplication for Year 2",
             "class_year_id": 2,
             "created_at": "2024-10-09T00:00:00Z",
@@ -64,7 +28,7 @@
         "pk": 6,
         "fields": {
             "teacher_id": 1,
-            "title": "Year 2 Geometry Basics",
+            "title": "Geometry Basics",
             "description": "Shapes and basic geometry for Year 2",
             "class_year_id": 2,
             "created_at": "2024-10-09T00:00:00Z",
@@ -76,7 +40,7 @@
         "pk": 7,
         "fields": {
             "teacher_id": 1,
-            "title": "Year 2 Measurement Quiz",
+            "title": "Measurement Quiz",
             "description": "Introduction to measurements for Year 2",
             "class_year_id": 2,
             "created_at": "2024-10-09T00:00:00Z",
@@ -88,7 +52,7 @@
         "pk": 8,
         "fields": {
             "teacher_id": 1,
-            "title": "Year 2 Fractions Quiz",
+            "title": "Fractions Quiz",
             "description": "Basic fractions for Year 2",
             "class_year_id": 2,
             "created_at": "2024-10-09T00:00:00Z",
@@ -100,81 +64,9 @@
         "pk": 9,
         "fields": {
             "teacher_id": 1,
-            "title": "Year 2 Time and Money",
+            "title": "Time and Money",
             "description": "Introduction to time and money concepts for Year 2",
             "class_year_id": 2,
-            "created_at": "2024-10-09T00:00:00Z",
-            "updated_at": "2024-10-09T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 10,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 4 Algebra Quiz",
-            "description": "Introduction to algebraic concepts for Year 4",
-            "class_year_id": 4,
-            "created_at": "2024-10-09T00:00:00Z",
-            "updated_at": "2024-10-09T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 11,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 4 Fractions and Decimals",
-            "description": "Advanced fractions and decimal operations for Year 4",
-            "class_year_id": 4,
-            "created_at": "2024-10-09T00:00:00Z",
-            "updated_at": "2024-10-09T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 12,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 4 Geometry Quiz",
-            "description": "Advanced geometry concepts for Year 4",
-            "class_year_id": 4,
-            "created_at": "2024-10-09T00:00:00Z",
-            "updated_at": "2024-10-09T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 13,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 4 Measurement Quiz",
-            "description": "In-depth measurements for Year 4",
-            "class_year_id": 4,
-            "created_at": "2024-10-09T00:00:00Z",
-            "updated_at": "2024-10-09T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 14,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 4 Data and Probability",
-            "description": "Understanding data and probability for Year 4",
-            "class_year_id": 4,
-            "created_at": "2024-10-09T00:00:00Z",
-            "updated_at": "2024-10-09T00:00:00Z"
-        }
-    },
-    {
-        "model": "api.quiz",
-        "pk": 15,
-        "fields": {
-            "teacher_id": 1,
-            "title": "Year 4 Time Quiz",
-            "description": "Advanced time-related math problems for Year 4",
-            "class_year_id": 4,
             "created_at": "2024-10-09T00:00:00Z",
             "updated_at": "2024-10-09T00:00:00Z"
         }
