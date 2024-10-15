@@ -27,19 +27,13 @@
         "fields": {
             "quiz": 1,
             "teacher_id": 1,
-            "question_text": "Arrange in ascending order: 7, 2, 9, 4",
-            "question_type": "drag_and_drop",
+            "question_text": "Complete the statement: 7 + 2 = ___",
+            "question_type": "fill_in_the_blank",
             "options": {
-                "1": "2",
-                "2": "4",
-                "3": "7",
-                "4": "9"
+                "blank": "9"
             },
             "correct_answer": {
-                "1": "2",
-                "2": "4",
-                "3": "7",
-                "4": "9"
+                "blank": "9"
             },
             "points": 3,
             "created_at": "2024-10-09T00:00:00Z",
@@ -71,19 +65,13 @@
         "fields": {
             "quiz": 1,
             "teacher_id": 1,
-            "question_text": "Match each number with its squared value",
-            "question_type": "matching_pairs",
+            "question_text": "Provide the result: 6 + 6 = ___",
+            "question_type": "fill_in_the_blank",
             "options": {
-                "3": "9",
-                "4": "16",
-                "5": "25",
-                "6": "36"
+                "blank": "12"
             },
             "correct_answer": {
-                "3": "9",
-                "4": "16",
-                "5": "25",
-                "6": "36"
+                "blank": "12"
             },
             "points": 4,
             "created_at": "2024-10-09T00:00:00Z",
@@ -140,19 +128,13 @@
         "fields": {
             "quiz": 2,
             "teacher_id": 1,
-            "question_text": "Arrange in descending order: 15, 8, 23, 10",
-            "question_type": "drag_and_drop",
+            "question_text": "Fill in the result: 12 - 4 = ___",
+            "question_type": "fill_in_the_blank",
             "options": {
-                "1": "23",
-                "2": "15",
-                "3": "10",
-                "4": "8"
+                "blank": "8"
             },
             "correct_answer": {
-                "1": "23",
-                "2": "15",
-                "3": "10",
-                "4": "8"
+                "blank": "8"
             },
             "points": 3,
             "created_at": "2024-10-09T00:00:00Z",
@@ -184,19 +166,13 @@
         "fields": {
             "quiz": 2,
             "teacher_id": 1,
-            "question_text": "Match each number with half of its value",
-            "question_type": "matching_pairs",
+            "question_text": "Complete the operation: 10 + 15 = ___",
+            "question_type": "fill_in_the_blank",
             "options": {
-                "8": "4",
-                "10": "5",
-                "12": "6",
-                "14": "7"
+                "blank": "25"
             },
             "correct_answer": {
-                "8": "4",
-                "10": "5",
-                "12": "6",
-                "14": "7"
+                "blank": "25"
             },
             "points": 4,
             "created_at": "2024-10-09T00:00:00Z",
