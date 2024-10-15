@@ -14,12 +14,12 @@
         "model": "api.user",
         "pk": 2,
         "fields": {
-            "username": "ella_smith",
+            "username": "sara",
             "email": "student1@dummyemail.com",
             "role": "student",
-            "class_year_id": 1,
-            "first_name": "Ella",
-            "last_name": "Smith"
+            "class_year_id": 2,
+            "first_name": "Indusara",
+            "last_name": "Abeygunawardana"
         }
     },
     {
@@ -38,12 +38,12 @@
         "model": "api.user",
         "pk": 4,
         "fields": {
-            "username": "lily_anderson",
+            "username": "sunny",
             "email": "student3@dummyemail.com",
             "role": "student",
-            "class_year_id": 3,
-            "first_name": "Lily",
-            "last_name": "Anderson"
+            "class_year_id": 2,
+            "first_name": "Sheikh Mahmud",
+            "last_name": "Sunny"
         }
     },
     {
@@ -61,12 +61,12 @@
         "model": "api.user",
         "pk": 6,
         "fields": {
-            "username": "liam_thompson",
+            "username": "harsh",
             "email": "student_cy2_1@dummyemail.com",
             "role": "student",
             "class_year_id": 2,
-            "first_name": "Liam",
-            "last_name": "Thompson"
+            "first_name": "Harsh",
+            "last_name": "Dhawan"
         }
     },
     {
