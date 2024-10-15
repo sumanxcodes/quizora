@@ -150,11 +150,13 @@ class QuestionViewSet(viewsets.ModelViewSet):
         - Students can only view questions for their assigned  quizzes.
         - Teachers and admins can view all questions.
         """
+
         user = self.request.user
+        quiz_id = self.request.query_params.get('quiz_id', None)
 
         # If the user is a student, filter questions by their class_year via related quizzes
         if user.is_authenticated and user.role == 'student':
-            return self.queryset.filter(quiz__class_year=user.class_year)
+            return self.queryset.filter(quiz__class_year=user.class_year, quiz_id=quiz_id)
         
         # If the user is a teacher or admin, return all questions
         return self.queryset
@@ -207,6 +209,20 @@ class GameSessionViewSet(viewsets.ModelViewSet):
             raise PermissionDenied("Only students can create game sessions.")
         # Assign the authenticated student as the user in the GameSession
         serializer.save(student=self.request.user)
+    
+    def perform_update(self, serializer):
+        """
+        Allow only the student who created the game session to update it.
+        """
+        game_session = self.get_object()
+
+        # Ensure only the student who created the game session can update it
+        if game_session.student != self.request.user:
+            raise PermissionDenied("You do not have permission to update this game session.")
+        
+        # Proceed with the update if permission checks are satisfied
+        serializer.save()
+    
 
 # Quiz ViewSet
 class QuizViewSet(viewsets.ModelViewSet):
@@ -309,6 +325,26 @@ class QuizResultViewSet(viewsets.ModelViewSet):
         
         # If the user has an unrecognized role, deny access
         raise PermissionDenied("You do not have permission to view this data.")
+    
+    def create(self, request, *args, **kwargs):
+        """
+        Override quiz result if student with same quiz entries existss.
+        """
+        student = request.data.get("student")
+        quiz = request.data.get("quiz")
+
+        # Check if a QuizResult entry already exists
+        quiz_result = QuizResult.objects.filter(student=student, quiz=quiz).first()
+        
+        if quiz_result:
+            # If it exists, update the score and feedback instead of creating a new one
+            serializer = self.get_serializer(quiz_result, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        # Otherwise, proceed with creating a new entry
+        return super().create(request, *args, **kwargs)
     
 # Progress Tracking ViewSet
 class ProgressTrackingViewSet(viewsets.ModelViewSet):

@@ -27,18 +27,14 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields = ['id', 'quiz', 'question_text', 'question_type', 'options', 'correct_answer', 'points', 'created_at', 'updated_at']
 
-    def to_representation(self, instance):
-        """
-        Custom representation to hide the 'correct_answer' field for students.
-        """
-        representation = super().to_representation(instance)
-        request = self.context.get('request')
-
-        if request and request.user.role == 'student':
-            # Hiding the correct_answer field for role students
-            representation.pop('correct_answer')
+    # def to_representation(self, instance):
+    #     """
+    #     Custom representation to hide the 'correct_answer' field for students.
+    #     """
+    #     representation = super().to_representation(instance)
+    #     request = self.context.get('request')
         
-        return representation
+    #     return representation
 
 # Game Session Serializer
 class GameSessionSerializer(serializers.ModelSerializer):
@@ -51,12 +47,16 @@ class GameSessionSerializer(serializers.ModelSerializer):
 
 # Quiz Result Serializer
 class QuizResultSerializer(serializers.ModelSerializer):
-    student = serializers.StringRelatedField()  # Display the student's username
-    quiz = serializers.StringRelatedField()     # Display the quiz title
+    student = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())  
+    quiz = serializers.PrimaryKeyRelatedField(queryset=Quiz.objects.all())  
 
     class Meta:
         model = QuizResult
         fields = ['id', 'student', 'quiz', 'score', 'feedback', 'completed_at', 'updated_at']
+        extra_kwargs = {
+            'student': {'required': True},
+            'quiz': {'required': True},
+        }
 
 # Progress Tracking Serializer
 class ProgressTrackingSerializer(serializers.ModelSerializer):

@@ -37,10 +37,7 @@ class IsStudent(permissions.BasePermission):
 
     def has_permission(self, request, view):
         if request.user.is_authenticated and request.user.role == 'student':
-            if request.method in permissions.SAFE_METHODS:
-                # Only allow read-only methods for students (GET, HEAD, OPTIONS)
-                return True
-             # Allow students to submit answers (POST)
-            elif request.method == 'POST':
+            # Allow read-only, POST, and PUT methods for students
+            if request.method in permissions.SAFE_METHODS or request.method in ['POST', 'PUT', 'PATCH']:
                 return True
         return False

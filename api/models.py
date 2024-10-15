@@ -109,6 +109,8 @@ class GameSession(models.Model):
     date_played = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True) # Track when this game session was lat updated
 
+    
+
 '''
 QuizResult
 Once session starts and progresses at the end Quiz Result will only save results of completed quiz
@@ -118,12 +120,9 @@ class QuizResult(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     score = models.IntegerField()
     feedback = models.TextField(blank=True, null=True)
-    completed_at = models.DateTimeField()
     completed_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return f'{self.student.username} - {self.quiz.title}'
 
 '''
 Progress tracking
