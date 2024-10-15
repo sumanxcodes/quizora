@@ -73,10 +73,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
         if role == 'admin':
             return queryset  # Admins see all users
-        elif role == 'teacher':
-            return queryset.filter(role='student')  # Teachers can only see students
         else:
-            return queryset.none()  # Students (or others) cannot access this view
+            return queryset.filter(role='student')  # Teachers can only see students
 
     def perform_create(self, serializer):
         """
