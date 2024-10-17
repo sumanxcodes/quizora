@@ -54,14 +54,11 @@ This repository is a backend for Quizora, a Python-based desktop quiz game. This
 		localhost:8080/api/progresstracking  
 		``` 
 
-## Dashboard
-### Features
 
 ## Technology Stack
 
 1.  **Backend (Dashboard and API)**: _Django (Python)_, a high-level Python web framework.  _Django REST framework_, a powerful and flexible tool for building Web APIs. (Trust us it is amazing... Best for rapid prototyping)
 - **Database**: SQLite (for development) as it it the default database used by Django framework. Good enough to build a Minimum Viable Product (MVP), will switch to MySQL or Postgres for production.
-- **Frontend**: Basic Django templates (HTML, CSS) for displaying dashboard visualisation. 
 - **Environment Management**: Python-decouple library for environment variable management.
 
 ## Setup Instructions
@@ -99,3 +96,53 @@ This repository is a backend for Quizora, a Python-based desktop quiz game. This
 
 6. Access the application at `http://127.0.0.1:8000/`.
 
+## Project Structure
+```bash
+Quizora/
+├── .idea/
+├── api/
+│   ├── __pycache__/
+│   ├── data/
+│   │   ├── classyear_data.json
+│   │   ├── gamesession_data.json
+│   │   ├── progresstracking_data.json
+│   │   ├── question_data.json
+│   │   ├── quiz_data.json
+│   │   └── user_data.json
+│   ├── migrations/
+│   │   ├── __pycache__/
+│   │   ├── __init__.py
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_auto_20241001_0101.py
+│   │   ├── 0003_gamesession_correct_answers_count_and_more.py
+│   │   ├── 0004_remove_gamesession_user_gamesession_student.py
+│   │   ├── 0005_question_teacher.py
+│   │   ├── 0006_load_dummy_data.py
+│   │   └── 0007_delete_leaderboard.py
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── permissions.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── quizora/
+│   ├── __pycache__/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── .env
+├── .gitignore
+├── db.sqlite3
+├── identifier.sqlite
+├── LICENSE
+├── manage.py
+├── migration.bak
+├── README.md
+└── requirements.txt
+
+```
