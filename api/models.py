@@ -14,7 +14,8 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
 
     # ForeignKey to ClassYear, for students only
-    class_year = models.ForeignKey('ClassYear', on_delete=models.SET_NULL, blank=True, null=True, help_text="Grade or class year for students")
+    class_year = models.ForeignKey('ClassYear', on_delete=models.SET_NULL, 
+                                   blank=True, null=True, help_text="Grade or class year for students")
 
     # Add unique related_name to avoid clashes with auth.User
     groups = models.ManyToManyField(Group, related_name='api_user_groups', blank=True)
